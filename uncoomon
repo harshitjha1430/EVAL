@@ -1,0 +1,41 @@
+def process_strings(s1, s2):
+    def get_common_uncommon_chars(s1, s2):
+        common_chars = []
+        uncommon_chars_s1 = []
+        uncommon_chars_s2 = []
+        
+        s1_pointer, s2_pointer = 0, 0
+        
+        while s1_pointer < len(s1) and s2_pointer < len(s2):
+            if s1[s1_pointer] == s2[s2_pointer]:
+                common_chars.append(s1[s1_pointer])
+                s1_pointer += 1
+                s2_pointer += 1
+            elif s1[s1_pointer] < s2[s2_pointer]:
+                uncommon_chars_s1.append(s1[s1_pointer])
+                s1_pointer += 1
+            else:
+                uncommon_chars_s2.append(s2[s2_pointer])
+                s2_pointer += 1
+        
+    
+        while s1_pointer < len(s1):
+            uncommon_chars_s1.append(s1[s1_pointer])
+            s1_pointer += 1
+        while s2_pointer < len(s2):
+            uncommon_chars_s2.append(s2[s2_pointer])
+            s2_pointer += 1
+        
+        return ''.join(common_chars), ''.join(uncommon_chars_s1), ''.join(uncommon_chars_s2)
+
+    common, uncommon_s1, uncommon_s2 = get_common_uncommon_chars(s1, s2)
+    
+    if common:
+        print("yes")
+        print("string1:", common)
+        print("string2:", uncommon_s1 + ", " + uncommon_s2)
+    else:
+        print("no")
+s1 = "Refer"
+s2 = "Rafael"
+process_strings(s1, s2) 
